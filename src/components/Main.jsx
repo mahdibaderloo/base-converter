@@ -1,4 +1,4 @@
-function Main() {
+function Main({ children }) {
   return (
     <main>
       <div>
@@ -19,6 +19,8 @@ function Main() {
           <option value="Decimal">Decimal 10</option>
         </select>
       </div>
+      {children}
+      <div>0101101</div>
     </main>
   );
 }
