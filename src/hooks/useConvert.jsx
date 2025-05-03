@@ -9,10 +9,10 @@ export default function useConvert(from, to, amount) {
         setResult(fromBinaryToDecimal(amount));
       }
     },
-    [amount, from, to, result]
+    [amount, from, to]
   );
 
-  return result;
+  return { result };
 }
 
 function fromBinaryToDecimal(amount) {
@@ -22,6 +22,6 @@ function fromBinaryToDecimal(amount) {
   for (let i = amountArray.length - 1; i >= 0; i--) {
     convertResult.push(Number(amountArray[i]) * 2 ** j++);
   }
-  const finalResult = convertResult.reduce((prev, cur) => (cur += prev));
+  const finalResult = convertResult.reduce((prev, cur) => prev + cur, 0);
   return finalResult;
 }

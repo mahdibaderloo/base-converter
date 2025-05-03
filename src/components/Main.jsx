@@ -6,7 +6,7 @@ function Main() {
   const [to, setTo] = useState("");
   const [amount, setAmount] = useState("");
   const [isConvert, setIsConvert] = useState(false);
-  const result = useConvert(from, to, amount);
+  const { result } = useConvert(from, to, amount);
 
   function handleFrom(value) {
     setIsConvert(false);
