@@ -9,6 +9,8 @@ export default function useConvert(from, to, amount) {
         setResult(binaryToDecimal(amount));
       if (from === "Octal" && to === "Decimal" && amount !== "")
         setResult(octalToDecimal(amount));
+      if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
+        setResult(hexadecimalToDecimal(amount));
     },
     [amount, from, to]
   );
@@ -33,6 +35,23 @@ function octalToDecimal(amount) {
   let j = 0;
   for (let i = amountArray.length - 1; i >= 0; i--) {
     convertResult.push(Number(amountArray[i]) * 8 ** j++);
+  }
+  const finalResult = convertResult.reduce((prev, cur) => prev + cur, 0);
+  return finalResult;
+}
+
+function hexadecimalToDecimal(amount) {
+  const amountArray = amount.split("");
+  let convertResult = [];
+  let j = 0;
+  for (let i = amountArray.length - 1; i >= 0; i--) {
+    if (amountArray[i] === "a") convertResult.push(10 * 16 ** j++);
+    else if (amountArray[i] === "b") convertResult.push(11 * 16 ** j++);
+    else if (amountArray[i] === "c") convertResult.push(12 * 16 ** j++);
+    else if (amountArray[i] === "d") convertResult.push(13 * 16 ** j++);
+    else if (amountArray[i] === "e") convertResult.push(14 * 16 ** j++);
+    else if (amountArray[i] === "f") convertResult.push(15 * 16 ** j++);
+    else convertResult.push(Number(amountArray[i]) * 16 ** j++);
   }
   const finalResult = convertResult.reduce((prev, cur) => prev + cur, 0);
   return finalResult;

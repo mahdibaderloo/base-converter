@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <img src="../../public/convert-icon.svg" />
+      <img src="..//convert-icon.svg" />
       <h1>Base Converter</h1>
     </header>
   );
