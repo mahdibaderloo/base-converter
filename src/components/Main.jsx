@@ -1,15 +1,28 @@
 import { useState } from "react";
+import useConvert from "../hooks/useConvert";
 
-function Main({ children }) {
-  const [from, setFrom] = useState("Decimal");
-  const [to, setTo] = useState("Binary");
-  const [amount, setAmount] = useState(0);
+function Main() {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [amount, setAmount] = useState("");
+  const [isConvert, setIsConvert] = useState(false);
+  const result = useConvert(from, to, amount);
+
+  function handleFrom(value) {
+    setIsConvert(false);
+    setFrom(value);
+  }
+
+  function handleTo(value) {
+    setIsConvert(false);
+    setTo(value);
+  }
 
   return (
     <main>
       <div>
         <p>From:</p>
-        <select onClick={(e) => setFrom(e.target.value)}>
+        <select value={from} onChange={(e) => handleFrom(e.target.value)}>
           <option value="Decimal">Decimal 10</option>
           <option value="Binary">Binary 2</option>
           <option value="Octal">Octal 8</option>
@@ -18,16 +31,20 @@ function Main({ children }) {
       </div>
       <div>
         <p>To:</p>
-        <select onClick={(e) => setTo(e.target.value)}>
+        <select value={to} onChange={(e) => handleTo(e.target.value)}>
           <option value="Binary">Binary 2</option>
           <option value="Octal">Octal 8</option>
           <option value="Hexadecimal">Hexadecimal 16</option>
           <option value="Decimal">Decimal 10</option>
         </select>
       </div>
-      <input type="text" onChange={(e) => setAmount(e.target.value)} />
-      {children}
-      <p>0101101</p>
+      <input
+        type="text"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button onClick={() => setIsConvert(true)}>Result</button>
+      <p>{isConvert ? result : ""}</p>
     </main>
   );
 }
