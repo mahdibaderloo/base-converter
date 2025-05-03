@@ -2,8 +2,8 @@ import { useState } from "react";
 import useConvert from "../hooks/useConvert";
 
 function Main() {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("Decimal");
+  const [to, setTo] = useState("Binary");
   const [amount, setAmount] = useState("");
   const [isConvert, setIsConvert] = useState(false);
   const { result } = useConvert(from, to, amount);

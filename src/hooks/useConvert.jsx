@@ -11,6 +11,8 @@ export default function useConvert(from, to, amount) {
         setResult(octalToDecimal(amount));
       if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
         setResult(hexadecimalToDecimal(amount));
+      if (from === "Decimal" && to === "Binary" && amount !== "")
+        setResult(decimalToBinary(amount));
     },
     [amount, from, to]
   );
@@ -54,5 +56,21 @@ function hexadecimalToDecimal(amount) {
     else convertResult.push(Number(amountArray[i]) * 16 ** j++);
   }
   const finalResult = convertResult.reduce((prev, cur) => prev + cur, 0);
+  return finalResult;
+}
+
+function decimalToBinary(amount) {
+  let reminderArray = [];
+  let divisionResult = Number(amount);
+
+  while (divisionResult >= 0) {
+    reminderArray.push(Math.floor(divisionResult % 2));
+    divisionResult /= 2;
+    console.log(divisionResult);
+    console.log(reminderArray);
+
+    if (Math.floor(divisionResult) === 0) break;
+  }
+  const finalResult = reminderArray.reverse().join("");
   return finalResult;
 }
