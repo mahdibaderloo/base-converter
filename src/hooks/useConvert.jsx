@@ -15,6 +15,8 @@ export default function useConvert(from, to, amount) {
         setResult(decimalToBinary(amount));
       if (from === "Decimal" && to === "Octal" && amount !== "")
         setResult(decimalToOctal(amount));
+      if (from === "Decimal" && to === "Hexadecimal" && amount !== "")
+        setResult(decimalToHexadecimal(amount));
     },
     [amount, from, to]
   );
@@ -82,6 +84,26 @@ function decimalToOctal(amount) {
   while (divisionResult >= 0) {
     reminderArray.push(Math.floor(divisionResult % 8));
     divisionResult /= 8;
+
+    if (Math.floor(divisionResult) === 0) break;
+  }
+  const finalResult = reminderArray.reverse().join("");
+  return finalResult;
+}
+
+function decimalToHexadecimal(amount) {
+  let reminderArray = [];
+  let divisionResult = Number(amount);
+
+  while (divisionResult >= 0) {
+    if (Math.floor(divisionResult % 16) === 10) reminderArray.push("A");
+    else if (Math.floor(divisionResult % 16) === 11) reminderArray.push("B");
+    else if (Math.floor(divisionResult % 16) === 12) reminderArray.push("C");
+    else if (Math.floor(divisionResult % 16) === 13) reminderArray.push("D");
+    else if (Math.floor(divisionResult % 16) === 14) reminderArray.push("E");
+    else if (Math.floor(divisionResult % 16) === 15) reminderArray.push("F");
+    else reminderArray.push(Math.floor(divisionResult % 16));
+    divisionResult /= 16;
 
     if (Math.floor(divisionResult) === 0) break;
   }
