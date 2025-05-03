@@ -13,6 +13,8 @@ export default function useConvert(from, to, amount) {
         setResult(hexadecimalToDecimal(amount));
       if (from === "Decimal" && to === "Binary" && amount !== "")
         setResult(decimalToBinary(amount));
+      if (from === "Decimal" && to === "Octal" && amount !== "")
+        setResult(decimalToOctal(amount));
     },
     [amount, from, to]
   );
@@ -66,8 +68,20 @@ function decimalToBinary(amount) {
   while (divisionResult >= 0) {
     reminderArray.push(Math.floor(divisionResult % 2));
     divisionResult /= 2;
-    console.log(divisionResult);
-    console.log(reminderArray);
+
+    if (Math.floor(divisionResult) === 0) break;
+  }
+  const finalResult = reminderArray.reverse().join("");
+  return finalResult;
+}
+
+function decimalToOctal(amount) {
+  let reminderArray = [];
+  let divisionResult = Number(amount);
+
+  while (divisionResult >= 0) {
+    reminderArray.push(Math.floor(divisionResult % 8));
+    divisionResult /= 8;
 
     if (Math.floor(divisionResult) === 0) break;
   }
