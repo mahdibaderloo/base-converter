@@ -18,6 +18,11 @@ function Main() {
     setTo(value);
   }
 
+  function handleInput(value) {
+    setIsConvert(false);
+    setAmount(value);
+  }
+
   return (
     <main>
       <div>
@@ -41,7 +46,7 @@ function Main() {
       <input
         type="text"
         value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={(e) => handleInput(e.target.value)}
       />
       <button onClick={() => setIsConvert(true)}>Result</button>
       <p>{isConvert ? result : ""}</p>
