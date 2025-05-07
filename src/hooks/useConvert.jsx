@@ -134,31 +134,6 @@ function binaryToOctal(amount) {
 }
 
 function binaryToHexadecimal(amount) {
-  const amountArray = amount.split("");
-  let lastFourItems = null;
-  let hexResult = [];
-
-  for (let i = amountArray.length - 1; i >= 1; i--) {
-    lastFourItems = amountArray.splice(-4, 4);
-    if (lastFourItems.length === 3) {
-      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
-      hexResult.unshift(0);
-    }
-    if (lastFourItems.length === 2) {
-      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
-      hexResult.unshift(0);
-      hexResult.unshift(0);
-    }
-    if (lastFourItems.length === 1) {
-      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
-      hexResult.unshift(0);
-      hexResult.unshift(0);
-      hexResult.unshift(0);
-    } else {
-      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
-    }
-  }
-
-  const finalResult = hexResult.join("");
-  return finalResult;
+  const decimal = binaryToDecimal(amount);
+  return decimalToHexadecimal(decimal);
 }
