@@ -19,7 +19,7 @@ export default function useConvert(from, to, amount) {
 
       if (from === "Octal" && to === "Decimal" && amount !== "")
         setResult(octalToDecimal(amount));
-      
+
       if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
         setResult(hexadecimalToDecimal(amount));
     },
@@ -56,12 +56,18 @@ function hexadecimalToDecimal(amount) {
   let convertResult = [];
   let j = 0;
   for (let i = amountArray.length - 1; i >= 0; i--) {
-    if (amountArray[i] === "a") convertResult.push(10 * 16 ** j++);
-    else if (amountArray[i] === "b") convertResult.push(11 * 16 ** j++);
-    else if (amountArray[i] === "c") convertResult.push(12 * 16 ** j++);
-    else if (amountArray[i] === "d") convertResult.push(13 * 16 ** j++);
-    else if (amountArray[i] === "e") convertResult.push(14 * 16 ** j++);
-    else if (amountArray[i] === "f") convertResult.push(15 * 16 ** j++);
+    if (amountArray[i].toLowerCase() === "a")
+      convertResult.push(10 * 16 ** j++);
+    else if (amountArray[i].toLowerCase() === "b")
+      convertResult.push(11 * 16 ** j++);
+    else if (amountArray[i].toLowerCase() === "c")
+      convertResult.push(12 * 16 ** j++);
+    else if (amountArray[i].toLowerCase() === "d")
+      convertResult.push(13 * 16 ** j++);
+    else if (amountArray[i].toLowerCase() === "e")
+      convertResult.push(14 * 16 ** j++);
+    else if (amountArray[i].toLowerCase() === "f")
+      convertResult.push(15 * 16 ** j++);
     else convertResult.push(Number(amountArray[i]) * 16 ** j++);
   }
   const finalResult = convertResult.reduce((prev, cur) => prev + cur, 0);
