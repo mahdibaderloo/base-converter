@@ -5,18 +5,23 @@ export default function useConvert(from, to, amount) {
 
   useEffect(
     function () {
-      if (from === "Binary" && to === "Decimal" && amount !== "")
-        setResult(binaryToDecimal(amount));
-      if (from === "Octal" && to === "Decimal" && amount !== "")
-        setResult(octalToDecimal(amount));
-      if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
-        setResult(hexadecimalToDecimal(amount));
       if (from === "Decimal" && to === "Binary" && amount !== "")
         setResult(decimalToBinary(amount));
+
       if (from === "Decimal" && to === "Octal" && amount !== "")
         setResult(decimalToOctal(amount));
+
       if (from === "Decimal" && to === "Hexadecimal" && amount !== "")
         setResult(decimalToHexadecimal(amount));
+
+      if (from === "Binary" && to === "Decimal" && amount !== "")
+        setResult(binaryToDecimal(amount));
+
+      if (from === "Octal" && to === "Decimal" && amount !== "")
+        setResult(octalToDecimal(amount));
+      
+      if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
+        setResult(hexadecimalToDecimal(amount));
     },
     [amount, from, to]
   );
