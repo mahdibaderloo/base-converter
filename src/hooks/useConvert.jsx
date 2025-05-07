@@ -129,27 +129,8 @@ function decimalToHexadecimal(amount) {
 }
 
 function binaryToOctal(amount) {
-  const amountArray = amount.split("");
-  let lastThreeItems = null;
-  let octalResult = [];
-
-  for (let i = amountArray.length - 1; i >= 1; i--) {
-    lastThreeItems = amountArray.splice(-3, 3);
-    if (lastThreeItems.length === 2) {
-      octalResult.unshift(binaryToDecimal(lastThreeItems.join("")));
-      octalResult.unshift(0);
-    }
-    if (lastThreeItems.length === 1) {
-      octalResult.unshift(binaryToDecimal(lastThreeItems.join("")));
-      octalResult.unshift(0);
-      octalResult.unshift(0);
-    } else {
-      octalResult.unshift(binaryToDecimal(lastThreeItems.join("")));
-    }
-  }
-
-  const finalResult = octalResult.join("");
-  return finalResult;
+  const decimal = binaryToDecimal(amount);
+  return decimalToOctal(decimal);
 }
 
 function binaryToHexadecimal(amount) {
