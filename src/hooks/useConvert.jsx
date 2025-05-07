@@ -40,6 +40,10 @@ export default function useConvert(from, to, amount) {
 
       if (from === "Hexadecimal" && to === "Octal" && amount !== "")
         setResult(hexadecimalToOctal(amount));
+
+      if (from === to && amount !== "") {
+        return setResult(amount);
+      }
     },
     [amount, from, to]
   );
