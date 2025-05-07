@@ -20,6 +20,9 @@ export default function useConvert(from, to, amount) {
       if (from === "Binary" && to === "Octal" && amount !== "")
         setResult(binaryToOctal(amount));
 
+      if (from === "Binary" && to === "Hexadecimal" && amount !== "")
+        setResult(binaryToHexadecimal(amount));
+
       if (from === "Octal" && to === "Decimal" && amount !== "")
         setResult(octalToDecimal(amount));
 
@@ -146,5 +149,35 @@ function binaryToOctal(amount) {
   }
 
   const finalResult = octalResult.join("");
+  return finalResult;
+}
+
+function binaryToHexadecimal(amount) {
+  const amountArray = amount.split("");
+  let lastFourItems = null;
+  let hexResult = [];
+
+  for (let i = amountArray.length - 1; i >= 1; i--) {
+    lastFourItems = amountArray.splice(-4, 4);
+    if (lastFourItems.length === 3) {
+      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
+      hexResult.unshift(0);
+    }
+    if (lastFourItems.length === 2) {
+      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
+      hexResult.unshift(0);
+      hexResult.unshift(0);
+    }
+    if (lastFourItems.length === 1) {
+      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
+      hexResult.unshift(0);
+      hexResult.unshift(0);
+      hexResult.unshift(0);
+    } else {
+      hexResult.unshift(binaryToDecimal(lastFourItems.join("")));
+    }
+  }
+
+  const finalResult = hexResult.join("");
   return finalResult;
 }
