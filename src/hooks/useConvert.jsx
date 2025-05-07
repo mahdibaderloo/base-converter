@@ -31,6 +31,9 @@ export default function useConvert(from, to, amount) {
 
       if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
         setResult(hexadecimalToDecimal(amount));
+
+      if (from === "Hexadecimal" && to === "Binary" && amount !== "")
+        setResult(hexadecimalToBinary(amount));
     },
     [amount, from, to]
   );
@@ -143,5 +146,10 @@ function binaryToHexadecimal(amount) {
 
 function octalToBinary(amount) {
   const decimal = octalToDecimal(amount);
+  return decimalToBinary(decimal);
+}
+
+function hexadecimalToBinary(amount) {
+  const decimal = hexadecimalToDecimal(amount);
   return decimalToBinary(decimal);
 }
