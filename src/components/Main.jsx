@@ -25,18 +25,26 @@ function Main() {
 
   return (
     <main>
-      <div>
+      <div className="ml-4 mb-4">
         <p>From:</p>
-        <select value={from} onChange={(e) => handleFrom(e.target.value)}>
+        <select
+          value={from}
+          onChange={(e) => handleFrom(e.target.value)}
+          className=" bg-slate-500 p-1 rounded-lg text-slate-900 border-none outline-none"
+        >
           <option value="Decimal">Decimal 10</option>
           <option value="Binary">Binary 2</option>
           <option value="Octal">Octal 8</option>
           <option value="Hexadecimal">Hexadecimal 16</option>
         </select>
       </div>
-      <div>
+      <div className="ml-4 ">
         <p>To:</p>
-        <select value={to} onChange={(e) => handleTo(e.target.value)}>
+        <select
+          value={to}
+          onChange={(e) => handleTo(e.target.value)}
+          className=" bg-slate-500 p-1 rounded-lg text-slate-900 border-none outline-none"
+        >
           <option value="Binary">Binary 2</option>
           <option value="Octal">Octal 8</option>
           <option value="Hexadecimal">Hexadecimal 16</option>
@@ -47,9 +55,17 @@ function Main() {
         type="text"
         value={amount}
         onChange={(e) => handleInput(e.target.value)}
+        className="w-[90%] h-10 mt-8 mb-4 block mx-auto text-center bg-slate-500 rounded-xl border-none outline-none text-slate-900 font-bold"
       />
-      <button onClick={() => setIsConvert(true)}>Result</button>
-      <p>{isConvert ? result : ""}</p>
+      <button
+        onClick={() => setIsConvert(true)}
+        className="w-[90%] h-10 block mx-auto bg-slate-500 rounded-xl"
+      >
+        Result
+      </button>
+      <p className="w-full h-10 mt-4 block text-center">
+        {isConvert ? result : ""}
+      </p>
     </main>
   );
 }
