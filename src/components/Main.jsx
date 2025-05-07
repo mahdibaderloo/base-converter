@@ -63,7 +63,7 @@ function Main() {
       >
         Result
       </button>
-      <p className="w-full h-10 mt-4 block text-center">
+      <p className="w-full h-10 mt-4 block text-center tracking-wider">
         {isConvert ? result : ""}
       </p>
     </main>
