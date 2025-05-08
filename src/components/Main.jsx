@@ -1,10 +1,16 @@
 import { useState } from "react";
 import useConvert from "../hooks/useConvert";
 
+const validDecimal = /^\d+$/;
+const validBinary = /^[01]+$/;
+const validOctal = /^[0-7]+$/;
+const validHexadecimal = /^[0-9a-f]+$/i;
+
 function Main() {
   const [from, setFrom] = useState("Decimal");
   const [to, setTo] = useState("Binary");
   const [amount, setAmount] = useState("");
+  const [validAmount, setValidAmount] = useState(false);
   const [isConvert, setIsConvert] = useState(false);
   const { result } = useConvert(from, to, amount);
 
@@ -21,6 +27,22 @@ function Main() {
   function handleInput(value) {
     setIsConvert(false);
     setAmount(value);
+
+    if (validAmountCheck(from, value)) {
+      setValidAmount(true);
+    } else {
+      setValidAmount(false);
+    }
+  }
+
+  function handleCheck() {
+    if (validAmountCheck(from, amount)) {
+      setIsConvert(true);
+      setValidAmount(true);
+    } else {
+      setValidAmount(false);
+      setIsConvert(false);
+    }
   }
 
   return (
@@ -55,10 +77,16 @@ function Main() {
         type="text"
         value={amount}
         onChange={(e) => handleInput(e.target.value)}
+        placeholder="Amount..."
         className="w-[90%] h-10 mt-8 mb-4 block mx-auto text-center bg-slate-500 rounded-xl border-none outline-none text-slate-900 font-bold"
       />
+      {validAmount ? null : (
+        <span className="w-full mb-4 block text-center text-red-400">
+          Please enter a valid amount
+        </span>
+      )}
       <button
-        onClick={() => setIsConvert(true)}
+        onClick={handleCheck}
         className="w-[90%] h-10 block mx-auto bg-slate-500 rounded-xl"
       >
         Result
@@ -68,6 +96,23 @@ function Main() {
       </p>
     </main>
   );
+}
+
+function validAmountCheck(from, amount) {
+  if (from === "Decimal" && validDecimal.test(amount)) {
+    return true;
+  }
+  if (from === "Binary" && validBinary.test(amount)) {
+    return true;
+  }
+  if (from === "Octal" && validOctal.test(amount)) {
+    return true;
+  }
+  if (from === "Hexadecimal" && validHexadecimal.test(amount)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 export default Main;

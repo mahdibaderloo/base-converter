@@ -5,40 +5,38 @@ export default function useConvert(from, to, amount) {
 
   useEffect(
     function () {
-      if (from === "Decimal" && to === "Binary" && amount !== "")
+      if (from === "Decimal" && to === "Binary")
         setResult(decimalToBinary(amount));
 
-      if (from === "Decimal" && to === "Octal" && amount !== "")
+      if (from === "Decimal" && to === "Octal")
         setResult(decimalToOctal(amount));
 
-      if (from === "Decimal" && to === "Hexadecimal" && amount !== "")
+      if (from === "Decimal" && to === "Hexadecimal")
         setResult(decimalToHexadecimal(amount));
 
-      if (from === "Binary" && to === "Decimal" && amount !== "")
+      if (from === "Binary" && to === "Decimal")
         setResult(binaryToDecimal(amount));
 
-      if (from === "Binary" && to === "Octal" && amount !== "")
-        setResult(binaryToOctal(amount));
+      if (from === "Binary" && to === "Octal") setResult(binaryToOctal(amount));
 
-      if (from === "Binary" && to === "Hexadecimal" && amount !== "")
+      if (from === "Binary" && to === "Hexadecimal")
         setResult(binaryToHexadecimal(amount));
 
-      if (from === "Octal" && to === "Decimal" && amount !== "")
+      if (from === "Octal" && to === "Decimal")
         setResult(octalToDecimal(amount));
 
-      if (from === "Octal" && to === "Binary" && amount !== "")
-        setResult(octalToBinary(amount));
+      if (from === "Octal" && to === "Binary") setResult(octalToBinary(amount));
 
-      if (from === "Octal" && to === "Hexadecimal" && amount !== "")
+      if (from === "Octal" && to === "Hexadecimal")
         setResult(octalToHexadecimal(amount));
 
-      if (from === "Hexadecimal" && to === "Decimal" && amount !== "")
+      if (from === "Hexadecimal" && to === "Decimal")
         setResult(hexadecimalToDecimal(amount));
 
-      if (from === "Hexadecimal" && to === "Binary" && amount !== "")
+      if (from === "Hexadecimal" && to === "Binary")
         setResult(hexadecimalToBinary(amount));
 
-      if (from === "Hexadecimal" && to === "Octal" && amount !== "")
+      if (from === "Hexadecimal" && to === "Octal")
         setResult(hexadecimalToOctal(amount));
 
       if (from === to && amount !== "") {
