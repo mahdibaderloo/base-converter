@@ -8,7 +8,7 @@
 
 > 🔢 Base Converter is a simple and handy web app for converting numbers between different bases (binary, decimal, octal, hexadecimal), built with React and Vite.
 > 
-> 🚀 Check it out here: [Base Converter Demo](https://mahdibaderloo.github.io/base-converter/)
+> 🚀 Check it out here: [Base Converter App](https://app-base-converter.netlify.app/)
 > 
 
 <br>
